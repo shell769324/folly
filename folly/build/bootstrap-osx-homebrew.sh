@@ -36,7 +36,7 @@ install_deps() {
     done
 }
 
-install_deps
+#install_deps
 
 # Allows this script to be invoked from anywhere in the source tree but the
 # BUILD_DIR we create will always be in the top level folly directory
