@@ -1,12 +1,12 @@
 CC=g++
 
 DEBUG=0
-CFLAGS=-g -O3 -Wall -DDEBUG=$(DEBUG) -std=c++17
+CFLAGS=-g -O3 -Wall -DDEBUG=$(DEBUG) -std=c++14
 LDFLAGS= -lm
 
-CFILES = testFromMe.cpp
+CFILES = test_ll_skiplist.cpp
 
-all: testFromMe
+all: test_ll_skiplist
 
-testFromMe: $(CFILES) 
-	$(CC) $(CFLAGS) -o testFromMe $(CFILES) $(LDFLAGS) /usr/local/lib/libdouble-conversion.a -lfolly -lglog -ljemalloc
+test_ll_skiplist: $(CFILES) 
+	$(CC) $(CFLAGS) -o test_ll_skiplist $(CFILES) $(LDFLAGS) /usr/local/lib/libdouble-conversion.a -lfolly -lglog -ljemalloc
