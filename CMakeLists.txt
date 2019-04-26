@@ -331,7 +331,10 @@ add_library(folly
 )
 apply_folly_compile_options_to_target(folly)
 
-target_link_libraries(folly PUBLIC folly_deps)
+target_link_libraries(folly PUBLIC folly_deps
+                                  double-conversion
+                                  ${CMAKE_THREAD_LIBS_INIT}
+                                  )
 
 # Test utilities exported for use by downstream projects
 add_library(folly_test_util
@@ -343,6 +346,8 @@ target_link_libraries(folly_test_util
     ${BOOST_LIBRARIES}
     folly
     ${LIBGMOCK_LIBRARIES}
+    double-conversion
+    ${CMAKE_THREAD_LIBS_INIT}
 )
 apply_folly_compile_options_to_target(folly_test_util)
 list(APPEND FOLLY_INSTALL_TARGETS folly_test_util)
@@ -424,7 +429,8 @@ if (BUILD_TESTS)
     target_link_libraries(thread_local_test_lib PUBLIC folly)
     target_include_directories(
       thread_local_test_lib
-      PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+      PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
+             ${CMAKE_THREAD_LIBS_INIT})
   endif()
 
   add_library(folly_test_support
@@ -474,8 +480,10 @@ if (BUILD_TESTS)
       ${BOOST_LIBRARIES}
       follybenchmark
       folly
+      double-conversion
       ${LIBGMOCK_LIBRARIES}
       ${GLOG_LIBRARY}
+      ${CMAKE_THREAD_LIBS_INIT}
   )
   apply_folly_compile_options_to_target(folly_test_support)
 
